@@ -1,0 +1,54 @@
+DATA:
+  data_name: stpls
+  data_root: /home/pknu/code/stpls3d/STPLS3D/block/
+  test_area: 3
+  classes: 6
+  fea_dim: 6
+  voxel_size: 0.2
+  voxel_max: 80000
+  loop: 5
+
+TRAIN:
+  arch: weak
+  use_xyz: True
+  sync_bn: False
+  ignore_label: 255
+  train_gpu: [0]
+  workers: 8  # data loader workers
+  batch_size: 2  # batch size for training
+  batch_size_val: 1  # batch size for validation during training, memory and speed tradeoff
+  base_lr: 0.0005
+  epochs: 100
+  start_epoch: 0
+  step_epoch: 30
+  multiplier: 0.1
+  momentum: 0.9
+  weight_decay: 0.1 #0.0001
+  drop_rate: 0.5
+  manual_seed: 7777
+  print_freq: 1
+  save_freq: 1
+  save_path: /home/pknu/code/weak/exp/stpls
+  weight:  # path to initial weight (default: none)
+  resume:  /home/pknu/code/weak/exp/stpls/model/model_last.pth  # path to latest checkpoint (default: none)
+  evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
+  eval_freq: 1
+  labeled_point: 0.1%
+  
+Distributed:
+  dist_url: tcp://localhost:8888
+  dist_backend: 'nccl'
+  multiprocessing_distributed: False
+  world_size: 1
+  rank: 0
+
+TEST:
+  test_list: dataset/s3dis/list/val5.txt
+  test_list_full: dataset/s3dis/list/val5_full.txt
+  split: val  # split in [train, val and test]
+  test_gpu: [0]
+  test_workers: 4
+  batch_size_test: 4
+  model_path: /home/pknu/code/weak/exp/stpls_001/model_best.pth 
+  save_folder: /home/pknu/code/weak/exp/stpls_001/test
+  names_path: /home/pknu/code/stpls3d/STPLS3D/stpls_names.txt

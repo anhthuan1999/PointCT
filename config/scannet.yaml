@@ -1,0 +1,55 @@
+DATA:
+  data_name: scannetv2
+  data_root: /home/pknu/code/scannet #/home/pknu/code/test_code/point-transformer/dataset/scannet
+  classes: 20
+  fea_dim: 6
+  voxel_size: 0.04
+  voxel_max: 80000
+  loop: 6
+
+
+TRAIN:
+  arch: weak
+  use_xyz: True
+  sync_bn: False
+  ignore_label: -100
+  train_gpu: [0]
+  workers: 4  # data loader workers
+  batch_size: 2  # batch size for training
+  batch_size_val: 2  # batch size for validation during training, memory and speed tradeoff
+  base_lr: 0.0005 #0.0005
+  epochs: 100
+  start_epoch: 0
+  step_epoch: 30
+  multiplier: 0.1
+  momentum: 0.9
+  weight_decay: 0.05 #0.0001
+  drop_rate: 0.5
+  manual_seed: 7777
+  print_freq: 1
+  save_freq: 1
+  save_path:  /home/pknu/code/weak/exp/scannet/
+  weight: #/home/pknu/code/test_code/point-transformer/exp/s3dis/pointtransformer_repro # path to initial weight (default: none)
+  resume: /home/pknu/code/weak/exp/scannet/model/model_last.pth 
+  # path to latest checkpoint (default: none)
+  evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
+  eval_freq: 1
+  labeled_point: 0.1%
+Distributed:
+  dist_url: tcp://localhost:8888
+  dist_backend: 'nccl'
+  multiprocessing_distributed: False
+  world_size: 1
+  rank: 0
+
+TEST:
+  data_root_val: /home/pknu/code/scannet/val #dataset/s3dis/list/val5.txt
+  test_list:  #dataset/s3dis/list/val5.txt
+  test_list_full: #dataset/s3dis/list/val5_full.txt
+  split: val  # split in [train, val and test]
+  test_gpu: [0]
+  test_workers: 4
+  batch_size_test: 4
+  model_path: /home/pknu/code/weak/exp/scannet/model/model_best.pth 
+  save_folder: /home/pknu/code/weak/exp/scannet/test
+  names_path: /home/pknu/code/scannet/scannet_names.txt
