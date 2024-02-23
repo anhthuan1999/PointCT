@@ -1,6 +1,6 @@
 DATA:
-  data_name: scannetv2
-  data_root: /home/pknu/code/scannet #/home/pknu/code/test_code/point-transformer/dataset/scannet
+  data_name: scannet
+  data_root: #data path
   classes: 20
   fea_dim: 6
   voxel_size: 0.04
@@ -13,9 +13,9 @@ TRAIN:
   use_xyz: True
   sync_bn: False
   ignore_label: -100
-  train_gpu: [0]
+  train_gpu: [0,1]
   workers: 4  # data loader workers
-  batch_size: 2  # batch size for training
+  batch_size: 4  # batch size for training
   batch_size_val: 2  # batch size for validation during training, memory and speed tradeoff
   base_lr: 0.0005 #0.0005
   epochs: 100
@@ -28,10 +28,9 @@ TRAIN:
   manual_seed: 7777
   print_freq: 1
   save_freq: 1
-  save_path:  /home/pknu/code/weak/exp/scannet/
-  weight: #/home/pknu/code/test_code/point-transformer/exp/s3dis/pointtransformer_repro # path to initial weight (default: none)
-  resume: /home/pknu/code/weak/exp/scannet/model/model_last.pth 
-  # path to latest checkpoint (default: none)
+  save_path:  # save model path
+  weight:  # path to initial weight (default: none)
+  resume: # resume from previous steps (suggest: model_last.pth)
   evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
   eval_freq: 1
   labeled_point: 0.1%
@@ -43,13 +42,13 @@ Distributed:
   rank: 0
 
 TEST:
-  data_root_val: /home/pknu/code/scannet/val #dataset/s3dis/list/val5.txt
-  test_list:  #dataset/s3dis/list/val5.txt
-  test_list_full: #dataset/s3dis/list/val5_full.txt
+  data_root_val: # validation folder
+  test_list: #test list (applied only to s3dis with val5.txt)
+  test_list_full: # applied only to s3dis: val5_full.txt
   split: val  # split in [train, val and test]
   test_gpu: [0]
   test_workers: 4
   batch_size_test: 4
-  model_path: /home/pknu/code/weak/exp/scannet/model/model_best.pth 
-  save_folder: /home/pknu/code/weak/exp/scannet/test
-  names_path: /home/pknu/code/scannet/scannet_names.txt
+  model_path: # model path for testing (suggest: model_best.pth)
+  save_folder: # save result folder
+  names_path: # scannet_names.txt

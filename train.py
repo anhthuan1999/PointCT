@@ -122,7 +122,7 @@ def main_worker(gpu, ngpus_per_node, argss):
             t.ChromaticTranslation_SN(), 
             t.ChromaticJitter_SN()
         ])
-        train_data = Scannetv2(split='train', data_root=args.data_root, voxel_size=args.voxel_size, voxel_max=args.voxel_max, transform=train_transform, shuffle_index=True, loop=args.loop)
+        train_data = Scannetv2(split='train', data_root=args.data_root, voxel_size=args.voxel_size, voxel_max=args.voxel_max, transform=train_transform, shuffle_index=True, loop=args.loop,labeled_point=args.labeled_point)
         val_transform = None
         val_data = Scannetv2(split='val', data_root=args.data_root, test_area=args.test_area, voxel_size=args.voxel_size, voxel_max=800000, transform=val_transform)
 
@@ -136,7 +136,7 @@ def main_worker(gpu, ngpus_per_node, argss):
             t.ChromaticJitter(), 
             t.HueSaturationTranslation()
         ])
-        train_data = STPLS(split='train', data_root=args.data_root, test_area=args.test_area, voxel_size=args.voxel_size, voxel_max=args.voxel_max, transform=train_transform, shuffle_index=True, loop=args.loop)
+        train_data = STPLS(split='train', data_root=args.data_root, test_area=args.test_area, voxel_size=args.voxel_size, voxel_max=args.voxel_max, transform=train_transform, shuffle_index=True, loop=args.loop,labeled_point=args.labeled_point)
         val_transform = None
         val_data = STPLS(split='val', data_root=args.data_root, test_area=args.test_area, voxel_size=args.voxel_size, voxel_max=800000, transform=val_transform)
 

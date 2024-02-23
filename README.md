@@ -88,4 +88,4 @@ If you find this project useful, please consider citing:
 ```
 
 ## Acknowledgement
-We refer [Point Transformer](https://github.com/POSTECH-CVLab/point-transformer) for our codebase.
+We refer [Point Transformer](https://github.com/POSTECH-CVLab/point-transformer) and [Stratified Transformer](https://github.com/dvlab-research/Stratified-Transformer) for our codebase.
