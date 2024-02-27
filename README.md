@@ -15,18 +15,19 @@ This is the official PyTorch implementation of our paper [**PointCT: Point Centr
 # Get Started
 ## Dependencies
 - Ubuntu: 20.04
+- Python: 3.7
 - PyTorch: 1.10.1 
 - CUDA: 11.3
-- Hardware: 2GPUs (NVIDIA RTX 3060) to reproduce [PointCT](https://openaccess.thecvf.com/content/WACV2024/papers/Tran_PointCT_Point_Central_Transformer_Network_for_Weakly-Supervised_Point_Cloud_Semantic_WACV_2024_paper.pdf) 
+- Hardware: 2 GPUs (NVIDIA RTX 3060) to reproduce [PointCT](https://openaccess.thecvf.com/content/WACV2024/papers/Tran_PointCT_Point_Central_Transformer_Network_for_Weakly-Supervised_Point_Cloud_Semantic_WACV_2024_paper.pdf) 
 
 ## Environment
 
 1. Install dependencies
 
 ```
-pip install -r requirements.txt
-
 pip install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+
+pip install -r requirements.txt
 ```
 
 2. Compile pointops
