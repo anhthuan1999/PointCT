@@ -38,7 +38,7 @@ TRAIN:
 Distributed:
   dist_url: tcp://localhost:8888
   dist_backend: 'nccl'
-  multiprocessing_distributed: False
+  multiprocessing_distributed: True
   world_size: 1
   rank: 0
 
